@@ -14,7 +14,7 @@ const items = [
 
 <template>
   <Tabs value="/">
-    <TabList>
+    <TabList class="bottom-nav-tablist">
       <Tab v-for="tab in items" :key="tab.label" :value="tab.route">
         <router-link
           v-if="tab.route"
@@ -36,6 +36,24 @@ const items = [
 </template>
 
 <style scoped>
+.bottom-nav-tablist {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-evenly;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  z-index: 100;
+}
+.bottom-nav-tablist > * {
+  flex: 1 1 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 .bottom-nav-link {
   display: flex;
   flex-direction: column;
@@ -44,9 +62,9 @@ const items = [
   gap: 0.15rem;
   text-decoration: none;
   color: inherit;
-  min-width: 45px;
-  width: 45px;
+  width: 100%;
 }
+
 .nav-icon {
   font-size: 1.5rem;
   margin-bottom: 0.15rem;

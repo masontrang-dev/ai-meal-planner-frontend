@@ -1,12 +1,33 @@
 <script setup lang="ts">
 import Button from "primevue/button";
 import { useNavigate } from "../util/useNavigate";
+import Toolbar from "primevue/toolbar";
+import InputText from "primevue/inputtext";
+import IconField from "primevue/iconfield";
+import InputIcon from "primevue/inputicon";
 
 const navigate = useNavigate();
 </script>
 
 <template>
-  <div class="app-header">Header</div>
+  <Toolbar>
+    <template #start>
+      <Button icon="pi pi-microsoft" class="mr-2" />
+    </template>
+
+    <template #center>
+      <IconField>
+        <InputIcon>
+          <i class="pi pi-search" />
+        </InputIcon>
+        <InputText placeholder="Search" />
+      </IconField>
+    </template>
+
+    <template #end>
+      <Button icon="pi pi-bell" aria-label="notifications"></Button
+    ></template>
+  </Toolbar>
 </template>
 
 <style scoped>
