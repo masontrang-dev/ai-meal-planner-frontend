@@ -1,40 +1,60 @@
 <script setup lang="ts">
-import Button from "primevue/button";
+import Tabs from "primevue/tabs";
+import TabList from "primevue/tablist";
+import Tab from "primevue/tab";
 
-import { useNavigate } from "../util/useNavigate";
-
-const navigate = useNavigate();
+const items = [
+  { label: "Home", icon: "pi pi-home", route: "/" },
+  { label: "Meal Plan", icon: "pi pi-apple", route: "/meal-plan" },
+  { label: "Schedule", icon: "pi pi-calendar", route: "/schedule" },
+  { label: "Grocery List", icon: "pi pi-list", route: "/grocery-list" },
+  { label: "Settings", icon: "pi pi-cog", route: "/settings" },
+];
 </script>
 
 <template>
-  <div class="app-header">
-    <Button
-      label="Grocery List"
-      icon="pi pi-list"
-      iconPos="top"
-      @click="navigate('grocery-list')"
-    />
-    <Button
-      label="Meal Plan"
-      icon="pi pi-apple"
-      iconPos="top"
-      @click="navigate('meal-plan')"
-    />
-    <Button
-      label="Schedule"
-      icon="pi pi-calendar"
-      iconPos="top"
-      @click="navigate('schedule')"
-    />
-  </div>
+  <Tabs value="/">
+    <TabList>
+      <Tab v-for="tab in items" :key="tab.label" :value="tab.route">
+        <router-link
+          v-if="tab.route"
+          v-slot="{ href, navigate }"
+          :to="tab.route"
+          custom
+        >
+          <a v-ripple :href="href" @click="navigate" class="bottom-nav-link">
+            <i :class="tab.icon + ' nav-icon'" />
+            <span class="nav-label">{{ tab.label }}</span>
+          </a>
+        </router-link>
+      </Tab>
+    </TabList>
+  </Tabs>
+  <!-- <div class="bottom-nav">
+    <TabMenu :model="items" v-model:activeIndex="activeIndex" />
+  </div> -->
 </template>
 
 <style scoped>
-.app-header {
+.bottom-nav-link {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  border-top: 1px solid #dee2e6;
+  justify-content: center;
+  gap: 0.15rem;
+  text-decoration: none;
+  color: inherit;
+  min-width: 45px;
+  width: 45px;
+}
+.nav-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.15rem;
+  display: block;
+}
+.nav-label {
+  font-size: 0.65rem;
+  display: block;
+  text-align: center;
 }
 </style>

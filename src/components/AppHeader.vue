@@ -6,11 +6,7 @@ const navigate = useNavigate();
 </script>
 
 <template>
-  <div class="app-header">
-    <Button icon="pi pi-home" aria-label="Home" @click="navigate('/')" />
-    Home
-    <Button label="Profile" icon="pi pi-user" />
-  </div>
+  <div class="app-header">Header</div>
 </template>
 
 <style scoped>
