@@ -18,6 +18,8 @@ import AppBottomNav from "@/components/AppBottomNav.vue";
   display: flex;
   flex-direction: column;
   height: 100vh;
+  padding: 0;
+  margin: 0;
 }
 
 .content {

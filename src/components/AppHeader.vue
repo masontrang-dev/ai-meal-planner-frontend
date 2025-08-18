@@ -78,14 +78,6 @@ const toggle = (event: any) => {
 </template>
 
 <style scoped>
-.app-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  border-bottom: 1px solid #dee2e6;
-}
-
 .notification-tabs {
   display: flex;
   justify-content: flex-start;

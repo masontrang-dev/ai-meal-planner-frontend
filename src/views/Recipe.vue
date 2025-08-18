@@ -126,33 +126,12 @@ const navigate = useNavigate();
       label="Recipe"
       aria-label="Edit Recipe"
       iconPos="left"
-      @click="
-        () => {
-          visibleBottom = true;
-          drawerMode = 'sort';
-        }
-      "
+      @click="navigate(`/recipes/${recipeId}/edit`)"
     />
   </div>
   <Panel :header="recipe.title || ''">
     <div class="flex flex-col gap-2">
       <Divider />
-    </div>
-
-    <div
-      v-for="option in groceries"
-      :key="option.id"
-      class="flex flex-col items-start gap-2"
-    >
-      <span>
-        <input
-          type="checkbox"
-          :checked="option.checked"
-          @change="onCheck(option)"
-          style="margin-right: 8px"
-        />
-        {{ option.name }}
-      </span>
     </div>
   </Panel>
 </template>

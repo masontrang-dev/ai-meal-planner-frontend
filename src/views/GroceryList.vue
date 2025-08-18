@@ -57,10 +57,6 @@ function onCheck(option) {
     </template>
   </OrderList> -->
   <Panel header="Grocery List" class="w-full sm:w-56">
-    <div class="flex flex-col gap-2">
-      <Divider />
-    </div>
-
     <div
       v-for="option in groceries"
       :key="option.id"

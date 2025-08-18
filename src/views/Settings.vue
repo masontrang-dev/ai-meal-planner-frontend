@@ -4,25 +4,7 @@ import Panel from "primevue/panel";
 
 <template>
   <Panel header="Settings">
-    <div class="flex flex-col gap-2">
-      <Divider />
-    </div>
-
-    <div
-      v-for="option in groceries"
-      :key="option.id"
-      class="flex flex-col items-start gap-2"
-    >
-      <span>
-        <input
-          type="checkbox"
-          :checked="option.checked"
-          @change="onCheck(option)"
-          style="margin-right: 8px"
-        />
-        {{ option.name }}
-      </span>
-    </div>
+    <div class="flex flex-col gap-2"></div>
   </Panel>
 </template>
 

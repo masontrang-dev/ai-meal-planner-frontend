@@ -22,11 +22,15 @@ a:hover {
   color: #535bf2;
 }
 
-body {
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+html,
+body,
+#app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 h1 {
@@ -57,11 +61,45 @@ button:focus-visible {
   padding: 2em;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.p-popover {
+  background: #2d3748 !important; /* Change to your desired color */
+  color: #ffffff !important;
+  padding: 1rem;
+  border-radius: 8px;
+}
+.p-popover .p-popover-content {
+  background: inherit;
+  border-color: #4a5568 !important;
+}
+
+/* Drawer container */
+.p-drawer {
+  background: #2d3748 !important;
+  color: #ffffff !important;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Drawer header */
+.p-drawer .p-drawer-header {
+  background: inherit;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 1rem;
+  border-bottom: 1px solid #4a5568;
+}
+
+/* Drawer content */
+.p-drawer .p-drawer-content {
+  background: inherit;
+  padding: 1rem;
+}
+
+/* Drawer footer if you have one */
+.p-drawer .p-drawer-footer {
+  background: inherit;
+  border-top: 1px solid #4a5568;
+  padding: 1rem;
 }
 
 @media (prefers-color-scheme: light) {

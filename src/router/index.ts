@@ -7,6 +7,7 @@ import Settings from "../views/Settings.vue";
 import Recipes from "../views/Recipes.vue";
 import Recipe from "../views/Recipe.vue";
 import EditRecipe from "../views/EditRecipe.vue";
+import AddRecipe from "../views/AddRecipe.vue";
 
 const routes = [
   { path: "/", component: Home },
@@ -20,12 +21,12 @@ const routes = [
     component: Recipe,
   },
   {
-    path: "/recipes/edit/:recipeId",
+    path: "/recipes/:recipeId/edit",
     component: EditRecipe,
   },
   {
     path: "/recipes/add",
-    component: EditRecipe,
+    component: AddRecipe,
   },
 ];
 

@@ -102,6 +102,7 @@ const navigate = useNavigate();
       icon="pi pi-plus"
       label="Recipe"
       iconPos="left"
+      @click="navigate('/recipes/add')"
     ></Button>
   </div>
   <Panel>

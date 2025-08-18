@@ -22,7 +22,7 @@ const items = [
           :to="tab.route"
           custom
         >
-          <a v-ripple :href="href" @click="navigate" class="bottom-nav-link">
+          <a :href="href" @click="navigate" class="bottom-nav-link">
             <i :class="tab.icon + ' nav-icon'" />
             <span class="nav-label">{{ tab.label }}</span>
           </a>
@@ -37,14 +37,13 @@ const items = [
 
 <style scoped>
 .bottom-nav-tablist {
-  width: 100%;
-
+  width: 100vw;
+  max-width: 100vw;
   display: flex;
   justify-content: space-evenly;
   position: fixed;
   bottom: 0;
   left: 0;
-
   z-index: 100;
 }
 .bottom-nav-tablist > * {
@@ -71,7 +70,7 @@ const items = [
   display: block;
 }
 .nav-label {
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   display: block;
   text-align: center;
 }
