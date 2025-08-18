@@ -6,6 +6,7 @@ import RadioButton from "primevue/radiobutton";
 import RadioButtonGroup from "primevue/radiobuttongroup";
 import Checkbox from "primevue/checkbox";
 import CheckboxGroup from "primevue/checkboxgroup";
+import Panel from "primevue/panel";
 
 import { ref } from "vue";
 import RecipeSortRadios from "./RecipeSortRadios.vue";
@@ -68,7 +69,7 @@ const filterOptions = [
     position="bottom"
     style="height: 80vh"
   >
-    <div class="drawer-content">
+    <Panel class="drawer-content">
       <RecipeSortRadios />
       <RecipeFilterCheckboxes
         v-if="drawerMode === 'combined'"
@@ -77,7 +78,7 @@ const filterOptions = [
         :label="value.label"
         :options="value.options"
       />
-    </div>
+    </Panel>
   </Drawer>
 </template>
 

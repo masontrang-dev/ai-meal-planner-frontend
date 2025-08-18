@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import Divider from "primevue/divider";
 import RadioButton from "primevue/radiobutton";
+import RadioButtonGroup from "primevue/radiobuttongroup";
+import Panel from "primevue/panel";
 
 import { ref } from "vue";
 
@@ -18,15 +20,12 @@ const sortOptions = ref([
   <div class="filter-group">
     <h3>Sort</h3>
 
-    <div v-for="option in sortOptions" :key="option.value">
-      <RadioButton
-        v-model="ingredient"
-        :inputId="option.value"
-        :name="option.value"
-        :value="option.value"
-      />
-      <label :for="option.value">{{ option.label }}</label>
-    </div>
+    <RadioButtonGroup name="sortOption" class="button-group">
+      <div v-for="option in sortOptions" :key="option.value">
+        <RadioButton :inputId="option.value" :value="option.value" />
+        <label :for="option.value">{{ option.label }}</label>
+      </div>
+    </RadioButtonGroup>
 
     <Divider />
   </div>
@@ -35,6 +34,7 @@ const sortOptions = ref([
 <style scoped>
 .button-group {
   display: flex;
+  flex-direction: column;
   gap: 0.5rem;
 }
 .filter-group {
