@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import Panel from "primevue/panel";
 import Card from "primevue/card";
+import Badge from "primevue/badge";
+import OverlayBadge from "primevue/overlaybadge";
+import Button from "primevue/button";
 const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const today = new Date();
+today.setDate(today.getDate() + 22);
 
 // Get the index of today (0 = Sun, 6 = Sat)
 const todayIndex = today.getDay();
@@ -65,7 +69,12 @@ const monthYearLabel = computed(() => {
             @click="() => console.log(date)"
           >
             <template #title>{{ date.getDate() }}</template>
-            <template #content><p class="m-0"></p></template>
+            <template #content
+              ><p class="m-0">
+                <Button label="B" severity="success" size="small" rounded />
+                <Button label="L" severity="info" size="small" rounded />
+                <Button label="D" severity="warn" size="small" rounded /></p
+            ></template>
           </Card>
         </div>
         <div class="days-of-week">
@@ -76,7 +85,13 @@ const monthYearLabel = computed(() => {
             @click="() => console.log(date)"
           >
             <template #title>{{ date.getDate() }}</template>
-            <template #content><p class="m-0"></p></template>
+            <template #content>
+              <p class="m-0">
+                <Button label="B" severity="success" size="small" rounded />
+                <Button label="L" severity="info" size="small" rounded />
+                <Button label="D" severity="warn" size="small" rounded />
+              </p>
+            </template>
           </Card>
         </div>
       </div>
