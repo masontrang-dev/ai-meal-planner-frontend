@@ -4,8 +4,8 @@ import TabList from "primevue/tablist";
 import Tab from "primevue/tab";
 
 const items = [
-  { label: "Home", icon: "pi pi-home", route: "/" },
   { label: "Meal Plan", icon: "pi pi-apple", route: "/meal-plan" },
+  { label: "Recipes", icon: "pi pi-book", route: "/recipes" },
   { label: "Schedule", icon: "pi pi-calendar", route: "/schedule" },
   { label: "Grocery List", icon: "pi pi-list", route: "/grocery-list" },
   { label: "Settings", icon: "pi pi-cog", route: "/settings" },

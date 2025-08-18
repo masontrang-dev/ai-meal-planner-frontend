@@ -4,10 +4,12 @@ import MealPlan from "../views/MealPlan.vue";
 import GroceryList from "../views/GroceryList.vue";
 import Schedule from "../views/Schedule.vue";
 import Settings from "../views/Settings.vue";
+import Recipes from "../views/Recipes.vue";
 
 const routes = [
   { path: "/", component: Home },
   { path: "/meal-plan", component: MealPlan },
+  { path: "/recipes", component: Recipes },
   { path: "/grocery-list", component: GroceryList },
   { path: "/schedule", component: Schedule },
   { path: "/settings", component: Settings },
