@@ -52,8 +52,7 @@ const monthYearLabel = computed(() => {
 
 <template>
   <div class="home">
-    <h1>{{ monthYearLabel }}</h1>
-    <Panel>
+    <Panel :header="monthYearLabel">
       <div class="schedule-container">
         <div class="days-of-week">
           <Card class="day-card" #title v-for="dayOfWeek in daysOfWeek">{{

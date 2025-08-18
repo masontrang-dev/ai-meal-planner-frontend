@@ -82,7 +82,6 @@ import RecipeFilter from "../components/RecipeFilter.vue";
 <style scoped>
 .home {
   font-size: 2em;
-  color: red;
   text-align: center;
 }
 </style>

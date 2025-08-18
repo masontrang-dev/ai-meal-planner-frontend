@@ -5,6 +5,7 @@ import GroceryList from "../views/GroceryList.vue";
 import Schedule from "../views/Schedule.vue";
 import Settings from "../views/Settings.vue";
 import Recipes from "../views/Recipes.vue";
+import Recipe from "../views/Recipe.vue";
 
 const routes = [
   { path: "/", component: Home },
@@ -13,6 +14,10 @@ const routes = [
   { path: "/grocery-list", component: GroceryList },
   { path: "/schedule", component: Schedule },
   { path: "/settings", component: Settings },
+  {
+    path: "/recipes/:recipeId",
+    component: Recipe,
+  },
 ];
 
 const router = createRouter({

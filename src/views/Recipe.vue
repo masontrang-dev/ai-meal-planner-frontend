@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import Card from "primevue/card";
-import Button from "primevue/button";
 import Panel from "primevue/panel";
-import RecipeFilter from "../components/RecipeFilter.vue";
+import Divider from "primevue/divider";
+import { ref } from "vue";
 import { useNavigate } from "../util/useNavigate";
+import { useRoute } from "vue-router";
+import Button from "primevue/button";
+
 const recipes = [
   {
     _id: "66b5a1111111111111111111",
@@ -93,48 +95,65 @@ const recipes = [
   },
 ];
 
+const route = useRoute();
+const recipeId = route.params.recipeId;
+console.log("Recipe ID:", recipeId);
+const recipe = recipes.find((r) => r._id === recipeId) || {
+  title: "Recipe Not Found",
+  description: "The recipe you are looking for does not exist.",
+  ingredients: [],
+  instructions: [],
+  photos: [],
+  tags: [],
+  cuisine: "",
+  mealType: "",
+  rating: 0,
+  notes: "",
+};
+
 const navigate = useNavigate();
 </script>
 
 <template>
   <div class="header">
-    <RecipeFilter /><Button
-      icon="pi pi-plus"
+    <Button
+      label="Back"
+      icon="pi pi-arrow-left"
+      @click="navigate('/recipes')"
+    />
+    <Button
+      icon="pi pi-pencil"
       label="Recipe"
+      aria-label="Edit Recipe"
       iconPos="left"
-    ></Button>
+      @click="
+        () => {
+          visibleBottom = true;
+          drawerMode = 'sort';
+        }
+      "
+    />
   </div>
-  <Panel>
-    <Card
-      style="width: 25rem; overflow: hidden"
-      v-for="recipe in recipes"
-      :key="recipe._id"
-      @click="navigate(`/recipes/${recipe._id}`)"
+  <Panel :header="recipe.title || ''">
+    <div class="flex flex-col gap-2">
+      <Divider />
+    </div>
+
+    <div
+      v-for="option in groceries"
+      :key="option.id"
+      class="flex flex-col items-start gap-2"
     >
-      <template #header>
-        <img alt="user header" />
-      </template>
-      <template #title>{{ recipe.title }}</template>
-      <template #subtitle
-        >{{ recipe.cuisine }} | {{ recipe.mealType }}</template
-      >
-      <template #content>
-        <p class="m-0">
-          {{ recipe.description }}
-        </p>
-      </template>
-      <template #footer>
-        <div class="button-group">
-          <Button
-            label="View Recipe"
-            severity="secondary"
-            variant="outlined"
-            class="w-full"
-          />
-          <Button label="Add to Plan" class="w-full" />
-        </div>
-      </template>
-    </Card>
+      <span>
+        <input
+          type="checkbox"
+          :checked="option.checked"
+          @change="onCheck(option)"
+          style="margin-right: 8px"
+        />
+        {{ option.name }}
+      </span>
+    </div>
   </Panel>
 </template>
 
@@ -143,6 +162,7 @@ const navigate = useNavigate();
   display: flex;
   gap: 0.5rem;
 }
+
 .header {
   display: flex;
   justify-content: space-between;
