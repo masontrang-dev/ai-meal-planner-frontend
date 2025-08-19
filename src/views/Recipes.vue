@@ -155,7 +155,7 @@ const navigate = useNavigate();
 .card {
   width: 100%;
   overflow: hidden;
-  padding: 0.5rem;
+  padding: 0rem;
 }
 .card:last-child {
   margin-bottom: 2rem;

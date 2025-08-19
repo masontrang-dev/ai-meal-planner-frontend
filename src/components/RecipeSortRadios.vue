@@ -26,8 +26,6 @@ const sortOptions = ref([
         <label :for="option.value">{{ option.label }}</label>
       </div>
     </RadioButtonGroup>
-
-    <Divider />
   </div>
 </template>
 

@@ -71,6 +71,7 @@ const filterOptions = [
   >
     <Panel class="drawer-content">
       <RecipeSortRadios />
+      <Divider />
       <RecipeFilterCheckboxes
         v-if="drawerMode === 'combined'"
         v-for="value in filterOptions"

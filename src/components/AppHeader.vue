@@ -43,7 +43,7 @@ const toggle = (event: any) => {
         badgeSeverity="secondary"
         @click="toggle"
       />
-      <Popover ref="op">
+      <Popover ref="op" style="height: 85vh">
         <div class="notification-tabs">
           <Button>All</Button>
           <Button variant="outlined">Alerts & Updates </Button>
@@ -51,24 +51,20 @@ const toggle = (event: any) => {
         </div>
 
         <Card>
-          <template #title>Simple Card</template>
+          <template #title>Recipe Notifications</template>
           <template #content>
             <p class="m-0">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Inventore sed consequuntur error repudiandae numquam deserunt
-              quisquam repellat libero asperiores earum nam nobis, culpa ratione
-              quam perferendis esse, cupiditate neque quas!
+              The following recipes need to be cooked: Tomato Soup, Chicken
+              Salad, and BBQ Ribs.
             </p>
           </template>
         </Card>
         <Card>
-          <template #title>Simple Card</template>
+          <template #title>Shopping List</template>
           <template #content>
             <p class="m-0">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Inventore sed consequuntur error repudiandae numquam deserunt
-              quisquam repellat libero asperiores earum nam nobis, culpa ratione
-              quam perferendis esse, cupiditate neque quas!
+              The following items need to be purchased: Apples, Bananas,
+              Carrots, and Flour.
             </p>
           </template>
         </Card>

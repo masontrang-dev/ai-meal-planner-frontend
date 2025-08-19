@@ -1,20 +1,16 @@
 <script setup lang="ts">
-import Panel from "primevue/panel";
 import Divider from "primevue/divider";
 import { ref } from "vue";
 import { useNavigate } from "../util/useNavigate";
-import { useRoute } from "vue-router";
+
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
-import InputNumber from "primevue/inputnumber";
-import InputSwitch from "primevue/inputswitch";
-import InputTextarea from "primevue/inputtextarea";
-import MultiSelect from "primevue/multiselect";
-import Dropdown from "primevue/dropdown";
-import Calendar from "primevue/calendar";
+
 import Rating from "primevue/rating";
-import { useForm } from "vee-validate";
+
 import Select from "primevue/select";
+import Fieldset from "primevue/fieldset";
+import Textarea from "primevue/textarea";
 
 const navigate = useNavigate();
 
@@ -39,9 +35,9 @@ const cuisines = ref([
 const title = ref("");
 const description = ref("");
 const ingredients = ref([{ name: "", amount: "" }]);
-const instructions = ref([{ name: "", amount: "" }]);
-const photos = ref([]);
-const tags = ref([]);
+const instructions = ref([{ name: "", step: 1 }]);
+const photos = ref("");
+const tags = ref("");
 const cuisine = ref("");
 const mealType = ref("");
 const rating = ref(0);
@@ -56,25 +52,33 @@ const removeIngredient = (index: number) => {
     ingredients.value.splice(index, 1);
   }
 };
+
+const addInstruction = () => {
+  instructions.value.push({ name: "", step: instructions.value.length + 1 });
+};
+
+const removeInstruction = (index: number) => {
+  if (instructions.value.length > 1) {
+    instructions.value.splice(index, 1);
+  }
+};
 </script>
 
 <template>
-  <div>
-    <h2>Recipe Details</h2>
-    <form>
+  <div class="form-container">
+    <form @submit.prevent="">
       <div class="form-field">
         <label for="title">Title</label>
-        <InputText size="small" id="title" v-model="title" type="text" />
+        <InputText id="title" v-model="title" type="text" />
       </div>
       <div class="form-field">
         <label for="description">Description</label>
-        <InputText size="small" id="description" v-model="description" />
+        <Textarea id="description" v-model="description" rows="3" />
       </div>
       <div class="form-field-row">
         <div class="form-field">
           <label for="mealType">Meal Type</label>
           <Select
-            size="small"
             v-model="mealType"
             :options="mealTypes"
             optionLabel="name"
@@ -84,7 +88,6 @@ const removeIngredient = (index: number) => {
         <div class="form-field">
           <label for="cuisine">Cuisine</label>
           <Select
-            size="small"
             v-model="cuisine"
             :options="cuisines"
             optionLabel="name"
@@ -93,101 +96,222 @@ const removeIngredient = (index: number) => {
         </div>
       </div>
 
-      <div
-        v-for="(ingredient, index) in ingredients"
-        :key="ingredient.name"
-        class="ingredient"
-      >
-        <div class="ingredient-row" style="max-width: 90vw">
-          <div class="form-field">
-            <label v-if="index === 0" for="ingredientName">Name</label>
-            <InputText
-              size="small"
-              id="ingredientName"
-              v-model="ingredient.name"
-              style="max-width: 50vw"
-            />
-          </div>
-
-          <div class="form-field">
-            <label v-if="index === 0" for="ingredientAmount">Amount</label>
-            <InputText
-              size="small"
-              id="ingredientAmount"
-              v-model="ingredient.amount"
-              style="max-width: 35vw"
-            />
-          </div>
-
-          <div>
+      <Fieldset legend="Ingredients" toggleable>
+        <div class="form-field">
+          <label class="form-label">Ingredients</label>
+          <div class="ingredients-list">
+            <div
+              v-for="(ingredient, index) in ingredients"
+              :key="index"
+              class="ingredient"
+            >
+              <div class="ingredient-row">
+                <div class="form-field" style="flex: 2">
+                  <InputText
+                    v-model="ingredient.name"
+                    :placeholder="`Ingredient ${index + 1}`"
+                  />
+                </div>
+                <div class="form-field" style="flex: 1">
+                  <InputText v-model="ingredient.amount" placeholder="Amount" />
+                </div>
+                <Button
+                  v-if="ingredients.length > 1"
+                  icon="pi pi-times"
+                  @click="removeIngredient(index)"
+                  severity="danger"
+                  text
+                  rounded
+                />
+              </div>
+            </div>
             <Button
-              arialabel="Remove Ingredient"
-              icon="pi pi-minus"
-              @click="removeIngredient(index)"
-              v-if="ingredients.length > 1"
-              size="small"
-              severity="danger"
+              icon="pi pi-plus"
+              label="Add Ingredient"
+              @click="addIngredient"
+              class="p-button-text"
             />
           </div>
         </div>
-        <Button
-          v-if="index === ingredients.length - 1"
-          icon="pi pi-plus"
-          aria-label="Add Ingredient"
-          @click="addIngredient"
-          size="small"
-        />
-      </div>
+      </Fieldset>
 
-      <div>
-        <label for="instructions">Instructions</label>
-        <InputText id="instructions" v-model="instructions" />
-      </div>
+      <Fieldset legend="Instructions" toggleable>
+        <div class="form-field">
+          <div class="ingredients-list">
+            <div
+              v-for="(instruction, index) in instructions"
+              :key="index"
+              class="instruction"
+            >
+              <div class="instruction-row">
+                <div class="form-field">
+                  <InputText
+                    v-model="instruction.name"
+                    :placeholder="`Step ${instruction.step}`"
+                  />
+                </div>
+
+                <Button
+                  v-if="instructions.length > 1"
+                  icon="pi pi-times"
+                  @click="removeInstruction(index)"
+                  severity="danger"
+                  text
+                  rounded
+                />
+              </div>
+            </div>
+            <Button
+              icon="pi pi-plus"
+              label="Add Instruction"
+              @click="addInstruction"
+              class="p-button-text"
+            />
+          </div>
+        </div>
+      </Fieldset>
 
       <div class="form-field">
-        <label for="rating">Rating</label>
-        <Rating v-model="rating" />
+        <label>Rating</label>
+        <Rating v-model="rating" :cancel="false" />
       </div>
+
       <div class="form-field">
         <label for="notes">Notes</label>
-        <InputText size="small" id="notes" v-model="notes" />
-      </div>
-      <div class="form-field">
-        <label for="tags">Tags</label>
-        <InputText size="small" id="tags" v-model="tags" />
+        <Textarea id="notes" v-model="notes" rows="3" />
       </div>
 
-      <Button type="submit" severity="secondary" label="Submit" />
+      <div class="form-field">
+        <label for="tags">Tags (comma separated)</label>
+        <InputText id="tags" v-model="tags" />
+      </div>
+
+      <div class="form-field">
+        <label for="tags">Photos (comma separated)</label>
+        <InputText id="photos" v-model="photos" />
+      </div>
+
+      <div class="form-actions">
+        <Button
+          type="button"
+          label="Cancel"
+          severity="secondary"
+          @click="$router.back()"
+        />
+        <Button type="submit" label="Save Recipe" severity="primary" />
+      </div>
     </form>
   </div>
 </template>
 
 <style scoped>
-.ingredient-row {
-  display: flex;
-  flex-direction: row;
-  max-width: 100vw;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0rem;
 }
 
-.header {
+h2 {
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+}
+
+form {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  margin-top: 0.5rem;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .form-field {
-  margin-bottom: 1rem;
+  margin-bottom: 0.25rem;
   display: flex;
   flex-direction: column;
-}
-.form-field-row {
-  width: 100%;
-  display: flex;
   gap: 0.5rem;
+}
+
+.form-field label {
+  font-weight: 500;
+  color: var(--text-color-secondary);
+  font-size: 0.9rem;
+}
+
+.form-field-row {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.form-field-row > .form-field {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.ingredients-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ingredient {
+  background: var(--surface-50);
+  border-radius: 6px;
+
+  transition: background-color 0.2s;
+}
+
+.ingredient:hover {
+  background: var(--surface-100);
+}
+
+.ingredient-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+}
+
+.ingredient-row .form-field {
+  margin-bottom: 0;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--surface-border);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .form-field-row,
+  .ingredient-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .ingredient-row .form-field {
+    width: 100%;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions > * {
+    width: 100%;
+  }
+}
+
+/* PrimeVue overrides */
+:deep(.p-inputtext) {
+  width: 100%;
+}
+
+:deep(.p-rating .p-rating-icon) {
+  color: var(--primary-color);
+  font-size: 1.25rem;
 }
 </style>
