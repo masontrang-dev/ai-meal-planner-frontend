@@ -37,41 +37,39 @@ const items = [
 
 <style scoped>
 .bottom-nav-tablist {
-  width: 100vw;
-  max-width: 100vw;
+  width: 100%;
+  max-width: 100%;
   display: flex;
   justify-content: space-evenly;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 100;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-.bottom-nav-tablist > * {
-  flex: 1 1 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
+
 .bottom-nav-link {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.15rem;
+  width: 100%;
   text-decoration: none;
   color: inherit;
-  width: 100%;
+  padding: 0.5rem 0;
 }
 
 .nav-icon {
   font-size: 1.5rem;
-  margin-bottom: 0.15rem;
-  display: block;
+  margin-bottom: 0.1rem;
 }
+
 .nav-label {
-  font-size: 0.7rem;
-  display: block;
-  text-align: center;
+  font-size: 0.6rem;
+}
+
+@media (max-width: 767px) {
+  .bottom-nav-tablist {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 </style>

@@ -3,9 +3,11 @@ import Panel from "primevue/panel";
 </script>
 
 <template>
-  <Panel header="Settings">
-    <div class="flex flex-col gap-2"></div>
-  </Panel>
+  <Panel header="Settings"> Coming Soon... </Panel>
 </template>
 
-<style scoped></style>
+<style scoped>
+.content {
+  padding-top: 0.5rem;
+}
+</style>

@@ -175,17 +175,11 @@ const navigate = useNavigate();
           </li>
         </ol>
       </Panel>
-      <Panel header="More Info" toggleable>
-        <div>
-          <h2>Notes</h2>
-          <p>{{ recipe.notes }}</p>
-        </div>
-
-        <div>
-          <h2>Tags</h2>
-          <div class="tags">
-            <Tag :value="tag" v-for="tag in recipe.tags" :key="tag" />
-          </div>
+      <Panel header="Notes" toggleable>
+        <p>{{ recipe.notes }}</p> </Panel
+      ><Panel header="Tags" toggleable>
+        <div class="tags">
+          <Tag :value="tag" v-for="tag in recipe.tags" :key="tag" />
         </div>
       </Panel>
     </template>
@@ -224,6 +218,7 @@ const navigate = useNavigate();
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  margin-top: 0.5rem;
 }
 .tags {
   display: flex;

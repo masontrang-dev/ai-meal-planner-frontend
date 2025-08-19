@@ -56,7 +56,8 @@ function onCheck(option) {
       </span>
     </template>
   </OrderList> -->
-  <Panel header="Grocery List" class="w-full sm:w-56">
+
+  <Panel header="Grocery List">
     <div
       v-for="option in groceries"
       :key="option.id"
@@ -74,3 +75,5 @@ function onCheck(option) {
     </div>
   </Panel>
 </template>
+
+<style scoped></style>

@@ -23,7 +23,7 @@ import AppBottomNav from "@/components/AppBottomNav.vue";
 }
 
 .content {
-  padding: 0.5rem;
+  padding: 0 0.5rem 0 0.5rem;
   flex: 1;
   overflow-y: auto;
 }

@@ -141,5 +141,6 @@ const navigate = useNavigate();
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  padding-top: 0.5rem;
 }
 </style>

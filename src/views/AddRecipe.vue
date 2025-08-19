@@ -35,5 +35,6 @@ const navigate = useNavigate();
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  margin-top: 0.5rem;
 }
 </style>

@@ -58,7 +58,11 @@ button:focus-visible {
 }
 
 .card {
-  padding: 2em;
+  padding: 0.5rem;
+}
+
+.p-card-body {
+  padding: 0.5rem !important;
 }
 
 .p-popover {
@@ -102,6 +106,9 @@ button:focus-visible {
   padding: 1rem;
 }
 
+.p-tab {
+  border-radius: 0 !important;
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -113,4 +120,8 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.p-panel {
+  margin-top: 0.5rem;
 }

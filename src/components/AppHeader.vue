@@ -84,4 +84,8 @@ const toggle = (event: any) => {
   gap: 10px;
   margin: 10px;
 }
+
+.p-toolbar {
+  padding: 0.5rem;
+}
 </style>

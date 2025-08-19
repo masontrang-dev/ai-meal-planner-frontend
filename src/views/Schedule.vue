@@ -51,54 +51,55 @@ const monthYearLabel = computed(() => {
 </script>
 
 <template>
-  <div class="home">
-    <Panel :header="monthYearLabel">
-      <div class="schedule-container">
-        <div class="days-of-week">
-          <Card class="day-card" #title v-for="dayOfWeek in daysOfWeek">{{
-            dayOfWeek
-          }}</Card>
-        </div>
-
-        <div class="days-of-week">
-          <Card
-            class="day-card"
-            v-for="date in weekDates.slice(0, 7)"
-            :key="date.toDateString()"
-            @click="() => console.log(date)"
-          >
-            <template #title>{{ date.getDate() }}</template>
-            <template #content
-              ><p class="m-0">
-                <Button label="B" severity="success" size="small" rounded />
-                <Button label="L" severity="info" size="small" rounded />
-                <Button label="D" severity="warn" size="small" rounded /></p
-            ></template>
-          </Card>
-        </div>
-        <div class="days-of-week">
-          <Card
-            class="day-card"
-            v-for="date in weekDates.slice(7, 14)"
-            :key="date.toDateString()"
-            @click="() => console.log(date)"
-          >
-            <template #title>{{ date.getDate() }}</template>
-            <template #content>
-              <p class="m-0">
-                <Button label="B" severity="success" size="small" rounded />
-                <Button label="L" severity="info" size="small" rounded />
-                <Button label="D" severity="warn" size="small" rounded />
-              </p>
-            </template>
-          </Card>
-        </div>
+  <Panel :header="monthYearLabel">
+    <div class="schedule-container">
+      <div class="days-of-week">
+        <Card class="day-card" #title v-for="dayOfWeek in daysOfWeek">{{
+          dayOfWeek
+        }}</Card>
       </div>
-    </Panel>
-  </div>
+
+      <div class="days-of-week">
+        <Card
+          class="day-card"
+          v-for="date in weekDates.slice(0, 7)"
+          :key="date.toDateString()"
+          @click="() => console.log(date)"
+        >
+          <template #title>{{ date.getDate() }}</template>
+          <template #content
+            ><p class="m-0">
+              <Button label="B" severity="success" size="small" rounded />
+              <Button label="L" severity="info" size="small" rounded />
+              <Button label="D" severity="warn" size="small" rounded /></p
+          ></template>
+        </Card>
+      </div>
+      <div class="days-of-week">
+        <Card
+          class="day-card"
+          v-for="date in weekDates.slice(7, 14)"
+          :key="date.toDateString()"
+          @click="() => console.log(date)"
+        >
+          <template #title>{{ date.getDate() }}</template>
+          <template #content>
+            <p class="m-0">
+              <Button label="B" severity="success" size="small" rounded />
+              <Button label="L" severity="info" size="small" rounded />
+              <Button label="D" severity="warn" size="small" rounded />
+            </p>
+          </template>
+        </Card>
+      </div>
+    </div>
+  </Panel>
 </template>
 
 <style scoped>
+.content {
+  padding-top: 0.5rem;
+}
 .days-of-week {
   display: flex;
   flex-direction: row;

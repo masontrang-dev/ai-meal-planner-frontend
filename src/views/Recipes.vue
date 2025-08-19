@@ -108,12 +108,14 @@ const navigate = useNavigate();
 
 <template>
   <div class="header">
-    <RecipeFilter /><Button
+    <RecipeFilter />
+    <Button
       icon="pi pi-plus"
       label="Recipe"
       iconPos="left"
       @click="navigate('/recipes/add')"
-    ></Button>
+    >
+    </Button>
   </div>
   <Panel>
     <Card
@@ -130,7 +132,7 @@ const navigate = useNavigate();
         >{{ recipe.cuisine }} | {{ recipe.mealType }}</template
       >
       <template #content>
-        <p class="m-0">
+        <p class="recipe-description">
           {{ recipe.description }}
         </p>
       </template>
@@ -169,9 +171,17 @@ const navigate = useNavigate();
   gap: 0.5rem;
 }
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding-top: 0.5rem;
+  background-color: #242424;
+  padding-bottom: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+}
+.recipe-description {
+  margin: 0;
 }
 </style>
