@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import Panel from "primevue/panel";
 import Divider from "primevue/divider";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useNavigate } from "../util/useNavigate";
 import { useRoute } from "vue-router";
 import Button from "primevue/button";
+import Card from "primevue/card";
+import Image from "primevue/image";
+import Rating from "primevue/rating";
+import Chip from "primevue/chip";
+import Tag from "primevue/tag";
 
 const recipes = [
   {
@@ -25,7 +30,10 @@ const recipes = [
       "Serve wrapped in romaine lettuce with rice or kimchi.",
     ],
     photos: [
-      { url: "/uploads/korean-wrap.jpg", caption: "Plated lettuce wraps" },
+      {
+        url: "https://picsum.photos/id/312/800/600",
+        caption: "Plated lettuce wraps",
+      },
     ],
     tags: ["spicy", "quick", "Korean"],
     cuisine: "Korean",
@@ -54,7 +62,10 @@ const recipes = [
       "Serve salmon with quinoa and sautéed spinach.",
     ],
     photos: [
-      { url: "/uploads/salmon-quinoa.jpg", caption: "Salmon over quinoa" },
+      {
+        url: "https://picsum.photos/id/315/800/600",
+        caption: "Salmon over quinoa",
+      },
     ],
     tags: ["healthy", "quick", "fish"],
     cuisine: "American",
@@ -83,7 +94,10 @@ const recipes = [
       "Top with green onions before serving.",
     ],
     photos: [
-      { url: "/uploads/mushroom-udon.jpg", caption: "Comforting udon bowl" },
+      {
+        url: "https://picsum.photos/id/316/800/600",
+        caption: "Comforting udon bowl",
+      },
     ],
     tags: ["vegetarian", "Japanese", "noodles"],
     cuisine: "Japanese",
@@ -129,11 +143,53 @@ const navigate = useNavigate();
       @click="navigate(`/recipes/${recipeId}/edit`)"
     />
   </div>
-  <Panel :header="recipe.title || ''">
-    <div class="flex flex-col gap-2">
-      <Divider />
-    </div>
-  </Panel>
+  <Card class="card">
+    <template #header>
+      <img
+        class="recipe-image"
+        :src="recipe.photos[0]?.url"
+        :alt="recipe.title"
+      />
+    </template>
+
+    <template #title>{{ recipe.title }}</template>
+    <template #subtitle
+      ><div class="subtitle">
+        <Tag :value="recipe.cuisine" />
+        <Tag :value="recipe.mealType" />
+        <Rating v-model="recipe.rating" readonly /></div
+    ></template>
+    <template #content>
+      <p>{{ recipe.description }}</p>
+      <Panel header="Ingredients" toggleable>
+        <ul>
+          <li v-for="ingredient in recipe.ingredients" :key="ingredient.name">
+            {{ ingredient.name }} - {{ ingredient.amount }}
+          </li>
+        </ul>
+      </Panel>
+      <Panel header="Instructions" toggleable>
+        <ol>
+          <li v-for="instruction in recipe.instructions" :key="instruction">
+            {{ instruction }}
+          </li>
+        </ol>
+      </Panel>
+      <Panel header="More Info" toggleable>
+        <div>
+          <h2>Notes</h2>
+          <p>{{ recipe.notes }}</p>
+        </div>
+
+        <div>
+          <h2>Tags</h2>
+          <div class="tags">
+            <Tag :value="tag" v-for="tag in recipe.tags" :key="tag" />
+          </div>
+        </div>
+      </Panel>
+    </template>
+  </Card>
 </template>
 
 <style scoped>
@@ -141,11 +197,36 @@ const navigate = useNavigate();
   display: flex;
   gap: 0.5rem;
 }
+.card {
+  width: 100%;
+  overflow: hidden;
+  padding: 0.5rem;
+  margin-bottom: 3rem;
+}
+.recipe-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+.subtitle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 
+.details {
+  display: flex;
+  justify-content: space-between;
+}
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+}
+.tags {
+  display: flex;
+  gap: 0.5rem;
 }
 </style>

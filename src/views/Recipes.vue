@@ -3,6 +3,7 @@ import Card from "primevue/card";
 import Button from "primevue/button";
 import Panel from "primevue/panel";
 import RecipeFilter from "../components/RecipeFilter.vue";
+import Image from "primevue/image";
 import { useNavigate } from "../util/useNavigate";
 const recipes = [
   {
@@ -23,7 +24,10 @@ const recipes = [
       "Serve wrapped in romaine lettuce with rice or kimchi.",
     ],
     photos: [
-      { url: "/uploads/korean-wrap.jpg", caption: "Plated lettuce wraps" },
+      {
+        url: "https://picsum.photos/id/312/800/600",
+        caption: "Plated lettuce wraps",
+      },
     ],
     tags: ["spicy", "quick", "Korean"],
     cuisine: "Korean",
@@ -52,7 +56,10 @@ const recipes = [
       "Serve salmon with quinoa and sautéed spinach.",
     ],
     photos: [
-      { url: "/uploads/salmon-quinoa.jpg", caption: "Salmon over quinoa" },
+      {
+        url: "https://picsum.photos/id/315/800/600",
+        caption: "Salmon over quinoa",
+      },
     ],
     tags: ["healthy", "quick", "fish"],
     cuisine: "American",
@@ -81,7 +88,10 @@ const recipes = [
       "Top with green onions before serving.",
     ],
     photos: [
-      { url: "/uploads/mushroom-udon.jpg", caption: "Comforting udon bowl" },
+      {
+        url: "https://picsum.photos/id/316/800/600",
+        caption: "Comforting udon bowl",
+      },
     ],
     tags: ["vegetarian", "Japanese", "noodles"],
     cuisine: "Japanese",
@@ -107,13 +117,13 @@ const navigate = useNavigate();
   </div>
   <Panel>
     <Card
-      style="width: 25rem; overflow: hidden"
+      class="card"
       v-for="recipe in recipes"
       :key="recipe._id"
       @click="navigate(`/recipes/${recipe._id}`)"
     >
       <template #header>
-        <img alt="user header" />
+        <img alt="user header" :src="recipe.photos[0].url" />
       </template>
       <template #title>{{ recipe.title }}</template>
       <template #subtitle
@@ -140,6 +150,20 @@ const navigate = useNavigate();
 </template>
 
 <style scoped>
+.card {
+  width: 100%;
+  overflow: hidden;
+  padding: 0.5rem;
+}
+.card:last-child {
+  margin-bottom: 2rem;
+}
+.card img {
+  width: 100%;
+  height: 200px; /* Fixed height for consistency */
+  object-fit: cover; /* Ensures the image covers the area while maintaining aspect ratio */
+  object-position: center; /* Centers the image within the container */
+}
 .button-group {
   display: flex;
   gap: 0.5rem;
