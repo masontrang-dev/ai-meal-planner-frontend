@@ -5,6 +5,7 @@ import { ref } from "vue";
 import { useNavigate } from "../util/useNavigate";
 import { useRoute } from "vue-router";
 import Button from "primevue/button";
+import RecipeForm from "../components/RecipeForm.vue";
 
 const navigate = useNavigate();
 </script>
@@ -18,9 +19,7 @@ const navigate = useNavigate();
     />
   </div>
   <Panel header="Add Recipe">
-    <div class="flex flex-col gap-2">
-      <Divider />
-    </div>
+    <RecipeForm />
   </Panel>
 </template>
 
