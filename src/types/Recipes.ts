@@ -1,16 +1,16 @@
 export interface Ingredient {
-  name: string;
-  amount: string;
+  item: string;
+  quantity: string;
 }
 
 export interface Instruction {
   step: number;
-  name: string;
+  text: string;
 }
 
 export interface RecipeSummary {
   _id: string;
-  title: string;
+  name: string;
   photos: {
     url: string;
     caption: string;
@@ -25,6 +25,8 @@ export interface RecipeSummary {
 export interface RecipeFull extends RecipeSummary {
   ingredients: Ingredient[];
   instructions: Instruction[];
+  author: string;
+  recipeYield: string;
   prepTime: string;
   cookTime: string;
   notes?: string;

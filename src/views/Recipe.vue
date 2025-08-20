@@ -67,7 +67,7 @@ const navigate = useNavigate();
       />
     </template>
 
-    <template #title>{{ recipe.title }}</template>
+    <template #title>{{ recipe.name }}</template>
     <template #subtitle
       ><div class="subtitle">
         <Tag :value="recipe.cuisine" v-if="recipe.cuisine" />
@@ -79,15 +79,18 @@ const navigate = useNavigate();
       <p>{{ recipe.description }}</p>
       <Panel header="Ingredients" toggleable>
         <ul>
-          <li v-for="ingredient in recipe.ingredients" :key="ingredient.name">
-            {{ ingredient.name }} - {{ ingredient.amount }}
+          <li v-for="ingredient in recipe.ingredients" :key="ingredient.item">
+            {{ ingredient.item }} - {{ ingredient.quantity }}
           </li>
         </ul>
       </Panel>
       <Panel header="Instructions" toggleable>
         <ol>
-          <li v-for="instruction in recipe.instructions" :key="instruction">
-            {{ instruction }}
+          <li
+            v-for="instruction in recipe.instructions"
+            :key="instruction.step"
+          >
+            {{ instruction.text }}
           </li>
         </ol>
       </Panel>

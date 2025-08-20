@@ -42,7 +42,7 @@ const navigate = useNavigate();
           :src="recipe.photos[0]?.url || '/public/neptune-placeholder-48.jpg'"
         />
       </template>
-      <template #title>{{ recipe.title }}</template>
+      <template #title>{{ recipe.name }}</template>
       <template #subtitle
         >{{ recipe.cuisine }} | {{ recipe.mealType }}
         <Rating v-model="recipe.rating" readonly />
