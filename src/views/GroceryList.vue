@@ -1,7 +1,13 @@
 <script setup lang="ts">
-import OrderList from "primevue/orderlist";
 import Panel from "primevue/panel";
 import { ref, watch } from "vue";
+
+interface GroceryItem {
+  id: string | number;
+  name: string;
+  checked: boolean;
+  // Add other properties that your grocery items might have
+}
 
 const groceries = ref([
   { id: 1, name: "Apples", checked: false },
@@ -10,7 +16,7 @@ const groceries = ref([
   { id: 4, name: "Doughnuts", checked: false },
 ]);
 
-const selectedItems = ref([]);
+const selectedItems = ref<GroceryItem[]>([]);
 
 watch(selectedItems, (newSelection) => {
   groceries.value.forEach((g) => {
@@ -19,7 +25,7 @@ watch(selectedItems, (newSelection) => {
 });
 
 // Handler for checkbox click
-function onCheck(option) {
+function onCheck(option: GroceryItem) {
   option.checked = !option.checked;
   if (option.checked) {
     // Add to selectedItems if not already present
@@ -36,27 +42,6 @@ function onCheck(option) {
 </script>
 
 <template>
-  <!-- <OrderList
-    v-model="groceries"
-    dataKey="id"
-    breakpoint="575px"
-    pt:pcListbox:root="w-full sm:w-56"
-    selectionMode="single"
-    :selection="selectedItems"
-  >
-    <template #option="{ option }">
-      <span>
-        <input
-          type="checkbox"
-          :checked="option.checked"
-          @change="onCheck(option)"
-          style="margin-right: 8px"
-        />
-        {{ option.name }}
-      </span>
-    </template>
-  </OrderList> -->
-
   <Panel header="Grocery List">
     <div
       v-for="option in groceries"

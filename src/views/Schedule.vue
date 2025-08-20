@@ -51,8 +51,9 @@ const monthYearLabel = computed(() => {
 </script>
 
 <template>
-  <Panel :header="monthYearLabel">
-    <div class="schedule-container">
+  <Panel header="Schedule">
+    Coming Soon...
+    <!-- <div class="schedule-container">
       <div class="days-of-week">
         <Card class="day-card" #title v-for="dayOfWeek in daysOfWeek">{{
           dayOfWeek
@@ -92,7 +93,7 @@ const monthYearLabel = computed(() => {
           </template>
         </Card>
       </div>
-    </div>
+    </div> -->
   </Panel>
 </template>
 
